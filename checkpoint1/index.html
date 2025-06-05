@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentence Analyzer</title>
+</head>
+<body>
+  <h1>Sentence Analyzer</h1>
+  <input type="text" id="sentenceInput" placeholder="Enter a sentence ending with a period">
+  <button onclick="analyzeSentence()">Analyze</button>
+
+  <p id="charCount"></p>
+  <p id="wordCount"></p>
+  <p id="vowelCount"></p>
+
+  <script>
+    function analyzeSentence() {
+      const sentence = document.getElementById("sentenceInput").value;
+
+      // Counter variables
+      let charCount = 0;
+      let wordCount = 0;
+      let vowelCount = 0;
+
+      const vowels = "aeiouAEIOU";
+
+      // Count characters
+      charCount = sentence.length;
+
+      // Count words (if ends with a period)
+      if (sentence.endsWith(".")) {
+        const words = sentence.slice(0, -1).split(" ");
+        wordCount = words.length;
+      } else {
+        alert("Sentence should end with a period.");
+        return;
+      }
+
+      // Count vowels
+      for (let i = 0; i < sentence.length; i++) {
+        if (vowels.includes(sentence[i])) {
+          vowelCount++;
+        }
+      }
+
+      // Display results
+      document.getElementById("charCount").innerText = "Characters: " + charCount;
+      document.getElementById("wordCount").innerText = "Words: " + wordCount;
+      document.getElementById("vowelCount").innerText = "Vowels: " + vowelCount;
+    }
+  </script>
+</body>
+</html>
